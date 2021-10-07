@@ -17,7 +17,7 @@ done
 # Linux specific aliases, work on both MacOS and Linux.
 pbcopy() {
 	stdin=$(</dev/stdin);
-	pbcopy="$(which pbcopy)";
+	pbcopy="$(type -p pbcopy)";
 	if [[ -n "$pbcopy" ]]; then
 		echo "$stdin" | "$pbcopy"
 	else
@@ -25,7 +25,7 @@ pbcopy() {
 	fi
 }
 pbpaste() {
-	pbpaste="$(which pbpaste)";
+	pbpaste="$(type -p pbpaste)";
 	if [[ -n "$pbpaste" ]]; then
 		"$pbpaste"
 	else
