@@ -168,3 +168,5 @@ if [[ -f "${HOME}/.travis/travis.sh" ]]; then
 fi
 
 
+alias_completion  > /dev/null 2>&1
+unset -f alias_completion
