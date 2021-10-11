@@ -20,6 +20,8 @@ pbcopy() {
 	pbcopy="$(type -p pbcopy)";
 	if [[ -n "$pbcopy" ]]; then
 		echo "$stdin" | "$pbcopy"
+	elif [[ -n "$(which pbcopy)" ]]; then 
+		echo "$stdin" | "$(which pbcopy)"
 	else
 		echo "$stdin" | xclip -selection clipboard
 	fi
@@ -28,6 +30,8 @@ pbpaste() {
 	pbpaste="$(type -p pbpaste)";
 	if [[ -n "$pbpaste" ]]; then
 		"$pbpaste"
+	elif [[ -n "$(which pbpaste)" ]]; then 
+		"$(which pbpaste)"
 	else
 		xclip -selection clipboard
 	fi
