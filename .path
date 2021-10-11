@@ -24,6 +24,9 @@ export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
 # add mysql
 export PATH="/usr/local/opt/mysql-client/bin:${PATH}"
 
+# add krew 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # update cdpath
 export CDPATH=${CDPATH}:${GOPATH}/src/github.com:${GOPATH}/src/golang.org:${GOPATH}/src
 
