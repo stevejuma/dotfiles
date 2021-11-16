@@ -70,7 +70,7 @@ shellcheck: ## Runs the shellcheck tests on the scripts.
 		--name df-shellcheck \
 		-v $(CURDIR):/usr/src:ro \
 		--workdir /usr/src \
-		koalaman/shellcheck-alpine:v0.7.2 apk add bash && bash ./test.sh
+		stevejuma/shellcheck ./test.sh
 
 .PHONY: help
 help:

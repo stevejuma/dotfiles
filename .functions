@@ -270,7 +270,7 @@ repo() {
 	# Find current directory relative to .git parent
 	full_path=$(pwd)
 	git_base_path=$(cd "./$(git rev-parse --show-cdup)" || exit 1; pwd)
-	relative_path=${full_path#$git_base_path} # remove leading git_base_path from working directory
+	relative_path="${full_path#"$git_base_path"}" # remove leading git_base_path from working directory
 
 	# If filename argument is present, append it
 	if [ "$1" ]; then
@@ -599,7 +599,7 @@ alias_completion(){
         if [[ -n $alias_args ]]; then
             local compl_func="${new_completion/#* -F /}"; compl_func="${compl_func%% *}"
             # avoid recursive call loops by ignoring our own functions
-            if [[ "${compl_func#_$namespace::}" == "$compl_func" ]]; then
+            if [[ "${compl_func#_"$namespace"::}" == "$compl_func" ]]; then
                 local compl_wrapper="_${namespace}::${alias_name}"
                     echo "function $compl_wrapper {
                         (( COMP_CWORD += ${#alias_arg_words[@]} ))
