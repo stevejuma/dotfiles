@@ -10,5 +10,3 @@ if [[ -r "/opt/homebrew/bin/brew" ]]; then
 	# shellcheck source=/dev/null
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-
-
