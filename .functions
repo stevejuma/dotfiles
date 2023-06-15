@@ -1,5 +1,12 @@
 #!/bin/bash
 
+sudo() {
+    unset -f sudo
+    if ! grep 'pam_tid.so' /etc/pam.d/sudo --silent; then
+      sudo sed -i -e '1s;^;auth       sufficient     pam_tid.so\n;' /etc/pam.d/sudo
+    fi
+    sudo "$@"
+ }
 # Simple calculator
 calc() {
 	local result=""
@@ -467,6 +474,7 @@ restart_gpgagent(){
 	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
 	echo "Restarted gpg-agent and scdaemon..."
+	echo "verify" | gpg --clear-sign
 }
 
 gitsetoriginnopush() {
@@ -619,4 +627,8 @@ alias_completion(){
     done < <(alias -p | sed -Ene "s/$alias_regex/\1 '\2' '\3'/p")
 	# shellcheck source=/dev/null
     source "$tmp_file" && rm -f "$tmp_file"
+}
+
+mvn_clean(){
+	find . -type d -name target | xargs rm -rv
 }
